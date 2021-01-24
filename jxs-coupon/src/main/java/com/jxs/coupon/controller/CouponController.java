@@ -31,6 +31,17 @@ public class CouponController {
     @Autowired
     private CouponService couponService;
 
+
+    /**
+     * 列表
+     */
+    @RequestMapping("/test")
+    // @RequiresPermissions("coupon:coupon:list")
+    public R test(@RequestParam Map<String, Object> params){
+
+        return R.ok().put("test", params);
+    }
+
     /**
      * 列表
      */

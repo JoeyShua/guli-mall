@@ -1,9 +1,11 @@
 package com.jxs.member.controller;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
+import com.jxs.member.feign.CouponServiceFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +32,18 @@ import com.jxs.common.utils.R;
 public class UmsMemberController {
     @Autowired
     private UmsMemberService umsMemberService;
+
+    @Autowired
+    private CouponServiceFeignClient couponServiceFeignClient;
+
+
+    @RequestMapping("/test")
+    public R findCoupon(@RequestParam Map<String, Object> params){
+        R list = couponServiceFeignClient.test(params);
+        return R.ok().put("coupon", list);
+    }
+
+
 
     /**
      * 列表

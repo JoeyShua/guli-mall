@@ -23,3 +23,8 @@ mybatis-plus:
 
 server:
   port: 8000
+
+coupon:
+  user:
+    name: zhangsan
+    age: 15
