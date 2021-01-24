@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jxs.common.util.PageUtils;
-import com.jxs.common.util.R;
+import com.jxs.common.utils.PageUtils;
+import com.jxs.common.utils.R;
 
 
 /**

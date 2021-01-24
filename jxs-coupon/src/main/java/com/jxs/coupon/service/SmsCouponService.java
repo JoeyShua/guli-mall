@@ -1,7 +1,7 @@
 package com.jxs.coupon.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.jxs.common.util.PageUtils;
+import com.jxs.common.utils.PageUtils;
 import com.jxs.coupon.entity.SmsCouponEntity;
 
 import java.util.Map;
