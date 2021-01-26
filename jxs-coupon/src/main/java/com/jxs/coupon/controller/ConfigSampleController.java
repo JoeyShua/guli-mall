@@ -21,9 +21,10 @@ public class ConfigSampleController {
     int age;
 
     @RequestMapping("/test")
-    public R test(){
+    public R test() {
 
-        return R.ok().put("userName", userName).put("age",age);
+        return R.ok().put("userName", userName).put("userName", userName)
+                .put("age", age);
     }
 
 
