@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.jxs.common.utils.PageUtils;
 import com.jxs.product.entity.PmsCategoryEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,5 +17,11 @@ import java.util.Map;
 public interface PmsCategoryService extends IService<PmsCategoryEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    /**
+     * @return
+     * 树状结构查询
+     */
+    List<PmsCategoryEntity> listWithTree();
 }
 

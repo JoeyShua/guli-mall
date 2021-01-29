@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    include:
+      - nacos
+      - custom
+      - gateway
+    active: dev
+server:
+  port: @server.port@

@@ -1,10 +1,10 @@
-package com.jxs.order;
+package com.jxs.demo;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class JxsOrderApplicationTests {
+class DemoApplicationTests {
 
     @Test
     void contextLoads() {
