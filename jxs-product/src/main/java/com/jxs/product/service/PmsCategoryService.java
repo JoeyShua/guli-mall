@@ -23,5 +23,11 @@ public interface PmsCategoryService extends IService<PmsCategoryEntity> {
      * 树状结构查询
      */
     List<PmsCategoryEntity> listWithTree();
+
+    /**
+     * @param asList
+     * 批量删除
+     */
+    void removeMenuByIds(List<Long> asList);
 }
 

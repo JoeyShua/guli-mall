@@ -1,10 +1,14 @@
 package com.jxs.product.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 import lombok.Data;
 
 /**
@@ -39,6 +43,7 @@ public class PmsCategoryEntity implements Serializable {
 	/**
 	 * 是否显示[0-不显示，1显示]
 	 */
+	@TableLogic(delval="0",value = "1")
 	private Integer showStatus;
 	/**
 	 * 排序
@@ -56,5 +61,11 @@ public class PmsCategoryEntity implements Serializable {
 	 * 商品数量
 	 */
 	private Integer productCount;
+
+	/**
+	 * 子分类
+	 */
+	@TableField(exist = false)
+	private List<PmsCategoryEntity> children;
 
 }

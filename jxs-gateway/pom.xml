@@ -24,7 +24,7 @@
     </properties>
 
     <dependencies>
-       <!-- <dependency>
+        <!--<dependency>
             <groupId>com.jxs.common</groupId>
             <artifactId>jxs-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
@@ -38,6 +38,11 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
+        </dependency>
+        <!--服务发现注册中心 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
         <dependency>

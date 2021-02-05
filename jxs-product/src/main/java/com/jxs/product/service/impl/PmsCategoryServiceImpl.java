@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -36,9 +37,44 @@ public class PmsCategoryServiceImpl extends ServiceImpl<PmsCategoryDao, PmsCateg
     @Override
     public List<PmsCategoryEntity> listWithTree() {
 
-        List<PmsCategoryEntity> pmsCategoryEntities = baseMapper.selectList(null);
+        //1. 怕查询所有列表
+        List<PmsCategoryEntity> entities = baseMapper.selectList(null);
+        //2.1找到所有的以及分类
 
-        return pmsCategoryEntities;
+        List<PmsCategoryEntity> leve1Menus = entities.stream().filter(pmsCategoryEntity -> pmsCategoryEntity.getParentCid() == 0)
+                //设置children
+                .map((root) -> {
+                    root.setChildren(getChildren(root, entities));
+                    return root;
+                })
+                //排序
+                .sorted((menu1, menu2) -> {
+                    return (menu1.getSort() == null?0:menu1.getSort()) - (menu2.getSort() == null?0:menu2.getSort());
+                })
+                .collect(Collectors.toList());
+        return leve1Menus;
+    }
+
+    /**
+     * @param asList
+     * 批量删除
+     */
+    @Override
+    public void removeMenuByIds(List<Long> asList) {
+        //TODO 1.检查当前要删除的菜单， 是否被别的地方引用
+        baseMapper.deleteBatchIds(asList);
+    }
+
+    private List<PmsCategoryEntity> getChildren(PmsCategoryEntity root, List<PmsCategoryEntity> entities) {
+
+        return entities.stream().filter((item) -> {
+            return item.getParentCid() == root.getCatId();
+        }).map((category) -> {
+            category.setChildren(getChildren(category, entities));
+            return category;
+        }).sorted((menu1, menu2) -> {
+            return (menu1.getSort() == null?0:menu1.getSort()) - (menu2.getSort() == null?0:menu2.getSort());
+        }).collect(Collectors.toList());
     }
 
 }

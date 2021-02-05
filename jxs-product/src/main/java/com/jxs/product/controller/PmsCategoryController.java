@@ -33,7 +33,7 @@ public class PmsCategoryController {
     private PmsCategoryService pmsCategoryService;
 
     /**
-     * 列表
+     * 查询所有分类以及子分类，并用树形结构组装起来
      */
     @RequestMapping("/list/tree")
    // @RequiresPermissions("product:pmscategory:list")
@@ -77,13 +77,26 @@ public class PmsCategoryController {
         return R.ok();
     }
 
+    @RequestMapping("/update/sort")
+    //@RequiresPermissions("product:category:update")
+    public R updateSort(@RequestBody PmsCategoryEntity[] category){
+        pmsCategoryService.updateBatchById(Arrays.asList(category));
+        return R.ok();
+    }
+
+
     /**
      * 删除
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("product:pmscategory:delete")
     public R delete(@RequestBody Long[] catIds){
-		pmsCategoryService.removeByIds(Arrays.asList(catIds));
+		//pmsCategoryService.removeByIds(Arrays.asList(catIds));
+
+        //检查当前要删除的菜单是否被别的地方引用
+        pmsCategoryService.removeMenuByIds(Arrays.asList(catIds));
+
+
 
         return R.ok();
     }

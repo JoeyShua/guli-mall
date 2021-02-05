@@ -2,7 +2,18 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: query_route
-          uri: https://example.org
+        - id: product_router
+          uri: lb://jxs-product
           predicates:
-            - Query=red, gree.
+            - Path=/api/product/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /$\{segment}
+
+
+        - id: admin_router
+          # loadBalance
+          uri: lb://jxs-admin
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /renren-fast/$\{segment}

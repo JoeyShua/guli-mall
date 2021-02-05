@@ -8,10 +8,15 @@
 	<packaging>jar</packaging>
 	<description>renren-generator</description>
 
-	<parent>
+	<!--<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.2.6.RELEASE</version>
+	</parent>-->
+	<parent>
+		<groupId>com.jxs</groupId>
+		<artifactId>jxs-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
 	<properties>
