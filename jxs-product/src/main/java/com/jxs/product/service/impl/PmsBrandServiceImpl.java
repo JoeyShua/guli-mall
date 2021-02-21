@@ -1,6 +1,5 @@
 package com.jxs.product.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -16,6 +15,8 @@ import com.jxs.product.service.PmsBrandService;
 
 @Service("pmsBrandService")
 public class PmsBrandServiceImpl extends ServiceImpl<PmsBrandDao, PmsBrandEntity> implements PmsBrandService {
+
+
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {

@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
+import com.jxs.common.validate.AddGroup;
+import com.jxs.common.validate.UpdateGroup;
+import com.jxs.common.validate.UpdateStatusGroup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,7 +63,7 @@ public class PmsBrandController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:pmsbrand:save")
-    public R save(@RequestBody PmsBrandEntity pmsBrand){
+    public R save(@Validated({AddGroup.class}) @RequestBody PmsBrandEntity pmsBrand){
 		pmsBrandService.save(pmsBrand);
 
         return R.ok();
@@ -71,7 +74,7 @@ public class PmsBrandController {
      */
     @RequestMapping("/update")
     // @RequiresPermissions("product:pmsbrand:update")
-    public R update(@RequestBody PmsBrandEntity pmsBrand){
+    public R update(@Validated(UpdateGroup.class) @RequestBody PmsBrandEntity pmsBrand){
 		pmsBrandService.updateById(pmsBrand);
 
         return R.ok();
@@ -82,7 +85,7 @@ public class PmsBrandController {
      */
     @RequestMapping("/update/status")
     //@RequiresPermissions("product:brand:update")
-    public R updateStatus( @RequestBody PmsBrandEntity brand){
+    public R updateStatus(@Validated(UpdateStatusGroup.class) @RequestBody PmsBrandEntity brand){
         pmsBrandService.updateById(brand);
         return R.ok();
     }

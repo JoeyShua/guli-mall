@@ -2,6 +2,12 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: third-party-router
+          uri: lb://jxs-third-party
+          predicates:
+            - Path=/api/thirdparty/**
+          filters:
+            - RewritePath=/api/thirdparty/(?<segment>.*),/$\{segment}
         - id: product_router
           uri: lb://jxs-product
           predicates:

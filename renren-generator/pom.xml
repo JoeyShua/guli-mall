@@ -46,6 +46,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<version>2.1.8.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>com.baomidou</groupId>
@@ -125,6 +126,7 @@
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
+			<version>42.2.5</version>
 		</dependency>
 		<!-- mongo驱动 -->
 		<dependency>
@@ -139,6 +141,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>2.1.0.RELEASE</version>
 			</plugin>
 		</plugins>
 	</build>
