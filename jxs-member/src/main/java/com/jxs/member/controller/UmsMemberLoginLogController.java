@@ -26,7 +26,7 @@ import com.jxs.common.utils.R;
  * @date 2021-01-23 21:40:25
  */
 @RestController
-@RequestMapping("member/umsmemberloginlog")
+@RequestMapping("member/memberloginlog")
 public class UmsMemberLoginLogController {
     @Autowired
     private UmsMemberLoginLogService umsMemberLoginLogService;

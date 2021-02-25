@@ -1,7 +1,13 @@
 mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath:/mapper/**/*.xml
   global-config:
     db-config:
       id-type: auto
       logic-delete-value: 1
       logic-not-delete-value: 0
+
+logging:
+  level:
+    com.jxs.product: debug

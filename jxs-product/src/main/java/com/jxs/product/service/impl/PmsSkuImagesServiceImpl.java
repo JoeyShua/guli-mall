@@ -1,6 +1,8 @@
 package com.jxs.product.service.impl;
 
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -24,6 +26,14 @@ public class PmsSkuImagesServiceImpl extends ServiceImpl<PmsSkuImagesDao, PmsSku
         );
 
         return new PageUtils(page);
+    }
+
+    /**
+     * @param id     保存图片信息
+     * @param images
+     */
+    @Override
+    public void saveImages(Long id, List<String> images) {
     }
 
 }

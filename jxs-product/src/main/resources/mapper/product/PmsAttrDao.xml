@@ -3,7 +3,7 @@
 
 <mapper namespace="com.jxs.product.dao.PmsAttrDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.jxs.product.entity.PmsAttrEntity" id="pmsAttrMap">
         <result property="attrId" column="attr_id"/>
         <result property="attrName" column="attr_name"/>
@@ -15,6 +15,13 @@
         <result property="catelogId" column="catelog_id"/>
         <result property="showDesc" column="show_desc"/>
     </resultMap>
+    <delete id="deleteRelation">
+        DELETE FROM `pms_attr_attrgroup_relation` WHERE
+        <foreach collection="list" item="item" separator=" or ">
+            (attr_id=#{item.attrId} AND attr_group_id=#{item.attrGroupId})
+        </foreach>
+
+    </delete>
 
 
 </mapper>

@@ -26,7 +26,7 @@ import com.jxs.common.utils.R;
  * @date 2021-01-23 21:40:24
  */
 @RestController
-@RequestMapping("member/umsintegrationchangehistory")
+@RequestMapping("member/integrationchangehistory")
 public class UmsIntegrationChangeHistoryController {
     @Autowired
     private UmsIntegrationChangeHistoryService umsIntegrationChangeHistoryService;

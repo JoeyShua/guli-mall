@@ -28,7 +28,7 @@ import com.jxs.common.utils.R;
  * @date 2021-01-23 21:40:25
  */
 @RestController
-@RequestMapping("member/umsmember")
+@RequestMapping("member/member")
 public class UmsMemberController {
     @Autowired
     private UmsMemberService umsMemberService;

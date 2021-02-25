@@ -26,4 +26,13 @@ public class PmsSkuInfoServiceImpl extends ServiceImpl<PmsSkuInfoDao, PmsSkuInfo
         return new PageUtils(page);
     }
 
+    /**
+     * @param skuInfoEntity
+     * 保存sku 信息
+     */
+    @Override
+    public void saveSkuInfo(PmsSkuInfoEntity skuInfoEntity) {
+        this.baseMapper.insert(skuInfoEntity);
+    }
+
 }

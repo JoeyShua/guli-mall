@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.jxs.common.utils.PageUtils;
 import com.jxs.product.entity.PmsProductAttrValueEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,5 +17,11 @@ import java.util.Map;
 public interface PmsProductAttrValueService extends IService<PmsProductAttrValueEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    /**
+     * @param collect \
+     *                保存产品属性
+     */
+    void saveProductAttr(List<PmsProductAttrValueEntity> collect);
 }
 

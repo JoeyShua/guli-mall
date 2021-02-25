@@ -18,5 +18,7 @@ public interface PmsBrandService extends IService<PmsBrandEntity> {
     PageUtils queryPage(Map<String, Object> params);
 
     void upload();
+
+    void updateDetail(PmsBrandEntity pmsBrand);
 }
 

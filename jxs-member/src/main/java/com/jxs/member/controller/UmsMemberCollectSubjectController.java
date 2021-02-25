@@ -26,7 +26,7 @@ import com.jxs.common.utils.R;
  * @date 2021-01-23 21:40:25
  */
 @RestController
-@RequestMapping("member/umsmembercollectsubject")
+@RequestMapping("member/membercollectsubject")
 public class UmsMemberCollectSubjectController {
     @Autowired
     private UmsMemberCollectSubjectService umsMemberCollectSubjectService;

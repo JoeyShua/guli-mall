@@ -1,7 +1,12 @@
 package com.jxs.product.service.impl;
 
+import com.jxs.product.service.PmsCategoryBrandRelationService;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -15,11 +20,17 @@ import com.jxs.common.utils.Query;
 import com.jxs.product.dao.PmsCategoryDao;
 import com.jxs.product.entity.PmsCategoryEntity;
 import com.jxs.product.service.PmsCategoryService;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service("pmsCategoryService")
+@Transactional
 public class PmsCategoryServiceImpl extends ServiceImpl<PmsCategoryDao, PmsCategoryEntity> implements PmsCategoryService {
 
+    @Autowired
+    private PmsCategoryDao pmsCategoryDao;
+    @Autowired
+    private PmsCategoryBrandRelationService pmsCategoryBrandRelationService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -63,6 +74,55 @@ public class PmsCategoryServiceImpl extends ServiceImpl<PmsCategoryDao, PmsCateg
     public void removeMenuByIds(List<Long> asList) {
         //TODO 1.检查当前要删除的菜单， 是否被别的地方引用
         baseMapper.deleteBatchIds(asList);
+    }
+
+    /**
+     * @param attrGroupId 查找分类路径
+     * @return
+     */
+    @Override
+    public Long[] findCategoryPath(Long attrGroupId) {
+
+        List<Long> paths = new ArrayList<>();
+        findParentPath(attrGroupId,paths);
+        Collections.reverse(paths);
+        return paths.toArray(new Long[paths.size()]);
+    }
+
+    /**
+     * @param pmsCategory
+     * 级联所有更新的字段更新
+     */
+    @Override
+    public void updateCascade(PmsCategoryEntity pmsCategory) {
+
+
+        //更新自己
+        this.updateById(pmsCategory);
+
+        if(StringUtils.isNotBlank(pmsCategory.getName())){
+            //更新关联表
+            pmsCategoryBrandRelationService.updateCategory(pmsCategory);
+        }
+
+
+    }
+
+    /**
+     * @param attrGroupId
+     * 递归查找父分类
+     * @param paths
+     */
+    private void findParentPath(Long attrGroupId, List<Long> paths) {
+
+        //收集当前节点id
+        paths.add(attrGroupId);
+        PmsCategoryEntity pmsCategoryEntity = pmsCategoryDao.selectById(attrGroupId);
+
+        if(pmsCategoryEntity.getParentCid() != null && pmsCategoryEntity.getParentCid() != 0){
+            findParentPath(pmsCategoryEntity.getParentCid(),paths);
+        }
+        return;
     }
 
     private List<PmsCategoryEntity> getChildren(PmsCategoryEntity root, List<PmsCategoryEntity> entities) {

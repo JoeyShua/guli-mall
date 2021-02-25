@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.jxs.common.utils.PageUtils;
 import com.jxs.product.entity.PmsSkuImagesEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,5 +17,12 @@ import java.util.Map;
 public interface PmsSkuImagesService extends IService<PmsSkuImagesEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    /**
+     * @param id
+     * 保存图片信息
+     * @param images
+     */
+    void saveImages(Long id, List<String> images);
 }
 

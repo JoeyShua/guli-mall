@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
+import com.jxs.product.vo.AttrRespVo;
+import com.jxs.product.vo.AttrVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,6 +36,18 @@ public class PmsAttrController {
     /**
      * 列表
      */
+    @RequestMapping("/{attrType}/list/{catelogId}")
+    // @RequiresPermissions("product:pmsattr:list")
+    public R queryBasePage(@RequestParam Map<String, Object> params,@PathVariable("catelogId")Long catelogId ,@PathVariable("attrType")String type){
+        PageUtils page = pmsAttrService.queryBasePage(params,catelogId, type);
+
+        return R.ok().put("page", page);
+    }
+
+
+    /**
+     * 列表
+     */
     @RequestMapping("/list")
    // @RequiresPermissions("product:pmsattr:list")
     public R list(@RequestParam Map<String, Object> params){
@@ -49,19 +63,21 @@ public class PmsAttrController {
     @RequestMapping("/info/{attrId}")
     //@RequiresPermissions("product:pmsattr:info")
     public R info(@PathVariable("attrId") Long attrId){
-		PmsAttrEntity pmsAttr = pmsAttrService.getById(attrId);
+		//PmsAttrEntity pmsAttr = pmsAttrService.getById(attrId);
+        AttrRespVo pmsAttr = pmsAttrService.getAttrInfo(attrId);
+
 
         return R.ok().put("pmsAttr", pmsAttr);
     }
+
 
     /**
      * 保存
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:pmsattr:save")
-    public R save(@RequestBody PmsAttrEntity pmsAttr){
-		pmsAttrService.save(pmsAttr);
-
+    public R save(@RequestBody AttrVo pmsAttr){
+        pmsAttrService.saveAttr(pmsAttr);
         return R.ok();
     }
 
@@ -70,8 +86,8 @@ public class PmsAttrController {
      */
     @RequestMapping("/update")
     // @RequiresPermissions("product:pmsattr:update")
-    public R update(@RequestBody PmsAttrEntity pmsAttr){
-		pmsAttrService.updateById(pmsAttr);
+    public R update(@RequestBody AttrVo vo){
+		pmsAttrService.updateAttr(vo);
 
         return R.ok();
     }
