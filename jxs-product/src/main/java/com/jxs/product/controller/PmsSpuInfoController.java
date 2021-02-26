@@ -27,7 +27,7 @@ import com.jxs.common.utils.R;
  * @date 2021-01-23 21:48:46
  */
 @RestController
-@RequestMapping("product/pmsspuinfo")
+@RequestMapping("product/spuinfo")
 public class PmsSpuInfoController {
     @Autowired
     private PmsSpuInfoService pmsSpuInfoService;
