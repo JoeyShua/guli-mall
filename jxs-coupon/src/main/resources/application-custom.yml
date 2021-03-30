@@ -2,3 +2,7 @@ coupon:
   user:
     name: zhangsan
     age: 15
+
+hello:
+  prefix: HUASHENGSHU
+  suffix: Hello World

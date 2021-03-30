@@ -5,6 +5,8 @@ spring:
       - mybatis
       - nacos
       - custom
+      - redis
+      - hytrix
     active: dev
 server:
   port: @server.port@
